@@ -2,14 +2,6 @@ require 'spec_helper'
 
 describe Sort do
 
-  let(:sorted_n) { [0, 1, 2, 3, 4, 5] }
-  let(:sorted_c) { ['a', 'b', 'c', 'd'] }
-
-  before do
-    @to_sort_n = [3, 0, 5, 2, 1, 4]
-    @to_sort_c = ['c', 'b', 'a', 'd']
-  end
-
   def assert_equal(sort, to_sort, sorted)
     Sort.new.send(sort, to_sort).should == sorted
   end
@@ -56,5 +48,12 @@ describe Sort do
     it_behaves_like 'sort for:', :quick_sort
   end
 
+  context "#insert sort" do
+    it_behaves_like 'sort for:', :insert_sort
+  end
+
+  context "#shell sort" do
+    # todo ...
+  end
 
 end
