@@ -7,6 +7,9 @@ describe Gsub do
     it "0 space" do
       g.gsub('hello').should == 'hello'
     end
+    it " " do
+      g.gsub(' ').should == '-+-'
+    end
 
     it "1 space" do
       g.gsub(' hello').should == '-+-hello'
@@ -25,7 +28,6 @@ describe Gsub do
 
       s2 = '我是中 国人， 我爱我的 祖国 ！ '
       g.gsub(s2).should == s2.gsub(/\s/, '-+-')
-
     end
   end
 end
