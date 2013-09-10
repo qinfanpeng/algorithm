@@ -11,9 +11,7 @@ class Sort
       for j in (i+1)..(a.size-1)
         mini_pos = j if a[mini_pos] > a[j]
       end
-      temp = a[i]
-      a[i] = a[mini_pos]
-      a[mini_pos] = temp
+      a[i], a[mini_pos] = a[mini_pos], a[i]  # Ruby 中交互两个变量无需引入临时变量
     end
     return a
   end
@@ -32,9 +30,7 @@ class Sort
     for i in 0..(a.size-2)
       for j in (i+1)..(a.size-1)
         if a[i] > a[j]
-          temp = a[i]
-          a[i] = a[j]
-          a[j] = temp
+          a[i], a[j] = a[j], a[i]
         end
       end
     end

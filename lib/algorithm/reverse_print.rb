@@ -25,6 +25,6 @@ class ReversePrinter
   # 基于递归版
   # 递归思想和栈的思想有很大的关联， 很多时候两种策略可以互换
   def reverse_print1(a)
-    # dodo
+    # todo
   end
 end
