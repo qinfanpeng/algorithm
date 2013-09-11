@@ -3,7 +3,7 @@
 class Fibonacci
 
   # 递归版
-  def produce1(n)
+  def recursion_produce(n)
     return 1 if n == 0 or n == 1
     produce(n-1) + produce(n-2)
   end
@@ -19,8 +19,12 @@ class Fibonacci
       for i in 2..n
         a[i] = a[i-1] + a[i-2]
       end
-      p a
       return  a[n]
     end
   end
+
+  def stack_produce(n)
+    # todo ...x
+  end
+
 end

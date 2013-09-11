@@ -1,10 +1,3 @@
-
-require 'algorithm/sort.rb'
-require 'algorithm/find.rb'
-require 'algorithm/gsub.rb'
-require 'algorithm/reverse_print.rb'
-require 'algorithm/fibonacci.rb'
-require 'algorithm/towers.rb'
-
-# todo: refactory the file
-#Dir["lib/algorithm/*.rb"].each {|file| puts File.basename file }
+# -*- coding: utf-8 -*-
+# 加载所有algrithm下的ruby文件
+Dir["lib/algorithm/*.rb"].each {|file| load file }
