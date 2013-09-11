@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
 
 class ReversePrinter
-  def initialize
-    Array.class_eval do
-      define_method :myshift do
-        self.shift
-        self
-      end
-    end
-  end
   #
   # 从后向前打印链表（此处用数组模拟），尽量不使用ruby的
   # reverse_*等高级语法
 
   # 基于栈思想版
-  def reverse_print(a)
+  def stack_reverse_print(a)
     result = []
     while e = a.pop
       result << e
@@ -24,7 +16,14 @@ class ReversePrinter
 
   # 基于递归版
   # 递归思想和栈的思想有很大的关联， 很多时候两种策略可以互换
-  def reverse_print1(a)
-    # todo
+  def recursion_reverse_print(a, result=[])
+    if a.size == 1
+      result << a[0]
+    else
+      item = a.shift  # 去掉a的第一个元素
+      recursion_reverse_print(a, result)  # 先递归打印出当前元素后面的
+      result << item                      # 再打印当前元素
+    end
+    result
   end
 end
