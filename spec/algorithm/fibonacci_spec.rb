@@ -31,8 +31,7 @@ describe Fibonacci do
   end
 
   context "#stack_produce" do
-    pending
-    #it_behaves_like "to produce", :stack_produce
+    it_behaves_like "to produce", :stack_produce
   end
 
 end
