@@ -11,7 +11,6 @@ class Tree
   end
 
   # === 递归版先序遍历
-  #
   def recursion_preorder_traversal(result=[])
     result << @data
     @left.recursion_preorder_traversal(result) if @left
@@ -20,7 +19,6 @@ class Tree
   end
 
   # === 栈思想版先序遍历
-  #
   def stack_preorder_traversal
     result = []
     result << @data
@@ -33,6 +31,14 @@ class Tree
       result << tree.data           # 如果栈中有左子树，取出其中data， 继续判断它的左右子树是否该进栈
       stack_push_tree(stack, tree)
     end
+    result
+  end
+
+  # === 递归版中序遍历
+  def recursion_ineorder_traversal(result=[])
+    @left.recursion_ineorder_traversal(result) if @left
+    result << @data
+    @right.recursion_ineorder_traversal(result) if @right
     result
   end
 

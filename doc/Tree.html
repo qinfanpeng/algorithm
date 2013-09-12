@@ -72,6 +72,8 @@
     
     <li><a href="#method-c-new">::new</a>
     
+    <li><a href="#method-i-recursion_ineorder_traversal">#recursion_ineorder_traversal</a>
+    
     <li><a href="#method-i-recursion_preorder_traversal">#recursion_preorder_traversal</a>
     
     <li><a href="#method-i-stack_preorder_traversal">#stack_preorder_traversal</a>
@@ -217,6 +219,39 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-recursion_ineorder_traversal" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recursion_ineorder_traversal</span><span
+            class="method-args">(result=[])</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-recursion_ineorder_traversal-label-%E9%80%92%E5%BD%92%E7%89%88%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86">递归版中序遍历</h3>
+          
+
+          
+          <div class="method-source-code" id="recursion_ineorder_traversal-source">
+            <pre><span class="ruby-comment"># File lib/algorithm/tree.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recursion_ineorder_traversal</span>(<span class="ruby-identifier">result</span>=[])
+  <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">recursion_ineorder_traversal</span>(<span class="ruby-identifier">result</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@left</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@data</span>
+  <span class="ruby-ivar">@right</span>.<span class="ruby-identifier">recursion_ineorder_traversal</span>(<span class="ruby-identifier">result</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@right</span>
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- recursion_ineorder_traversal-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- recursion_ineorder_traversal-method -->
+
+    
       <div id="method-i-recursion_preorder_traversal" class="method-detail ">
         
         <div class="method-heading">
@@ -233,7 +268,7 @@
 
           
           <div class="method-source-code" id="recursion_preorder_traversal-source">
-            <pre><span class="ruby-comment"># File lib/algorithm/tree.rb, line 14</span>
+            <pre><span class="ruby-comment"># File lib/algorithm/tree.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">recursion_preorder_traversal</span>(<span class="ruby-identifier">result</span>=[])
   <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@data</span>
   <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">recursion_preorder_traversal</span>(<span class="ruby-identifier">result</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@left</span>
@@ -266,7 +301,7 @@
 
           
           <div class="method-source-code" id="stack_preorder_traversal-source">
-            <pre><span class="ruby-comment"># File lib/algorithm/tree.rb, line 23</span>
+            <pre><span class="ruby-comment"># File lib/algorithm/tree.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stack_preorder_traversal</span>
   <span class="ruby-identifier">result</span> = []
   <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@data</span>
