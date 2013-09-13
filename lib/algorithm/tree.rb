@@ -96,6 +96,20 @@ class Tree
     result
   end
 
+  # === 递归版按层遍历
+  def recursion_layer_torder_traversal(result=[], layer=1)
+    result << @data if layer == 1   # 根节点把data加入result，后面子树就不必加了， 以免重复
+    result << @left.data if @left
+    result << @right.data if @right
+
+    layer += 1
+
+    @left.recursion_layer_torder_traversal(result, layer) if @left
+    @right.recursion_layer_torder_traversal(result, layer) if @right
+
+    result
+  end
+
   # === 打印一棵树()
   def print
     # todo: 等层级遍历完成后，再来弄x
@@ -116,9 +130,4 @@ class Tree
 
 
 
-  private
-  def stack_push_tree(stack, tree)
-    stack << tree.right if tree.right
-    stack << tree.left if tree.left
-  end
 end

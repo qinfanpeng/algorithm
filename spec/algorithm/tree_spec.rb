@@ -109,10 +109,31 @@ describe Tree do
     end
   end
 
+  shared_examples_for "layer order traversal" do |traversal|
+    it "1 node" do
+      Tree.new(1).send(traversal).should == [1]
+    end
+    it "2 nodes" do
+      t2_l.send(traversal).should == [1, 2]
+      t2_r.send(traversal).should == [1, 2]
+    end
+    it "3 nodes" do
+      t3_l_r.send(traversal).should == [1, 2, 3]
+      t3_l_l.send(traversal).should == [1, 2, 3]
+    end
+    it "4 nodes" do
+      t4_l_l_r.send(traversal).should == [1, 2, 3, 4]
+    end
+    it "and more" do
+      t7.send(traversal).should == [1, 2, 5, 3, 4, 6, 7]
+    end
+  end
+
   context "recursion" do
     it_behaves_like "preorder traversal", :recursion_preorder_traversal
     it_behaves_like "inorder traversal", :recursion_inorder_traversal
     it_behaves_like "postorder traversal", :recursion_postorder_traversal
+    it_behaves_like "layer order traversal", :recursion_layer_torder_traversal
   end
   context "stack style" do
     it_behaves_like "preorder traversal", :stack_preorder_traversal
