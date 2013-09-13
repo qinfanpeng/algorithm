@@ -65,6 +65,12 @@ class Tree
     end
     result
   end
+
+  def recursion_postorder_traversal(result=[])
+    @left.recursion_postorder_traversal(result) if @left
+    @right.recursion_postorder_traversal(result) if @right
+    result << @data
+  end
   # === 打印一棵树()
   def print
     # todo: 等层级遍历完成后，再来弄x

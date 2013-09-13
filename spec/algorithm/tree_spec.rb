@@ -88,9 +88,31 @@ describe Tree do
       t7.send(traversal).should == [3, 2, 4, 1, 6, 5, 7]
     end
   end
+
+  shared_examples_for "postorder traversal" do |traversal|
+    it "1 node" do
+      Tree.new(1).send(traversal).should == [1]
+    end
+    it "2 nodes" do
+      t2_l.send(traversal).should == [2, 1]
+      t2_r.send(traversal).should == [2, 1]
+    end
+    it "3 nodes" do
+      t3_l_r.send(traversal).should == [2, 3, 1]
+      t3_l_l.send(traversal).should == [3, 2, 1]
+    end
+    it "4 nodes" do
+      t4_l_l_r.send(traversal).should == [3, 4, 2, 1]
+    end
+    it "and more" do
+      t7.send(traversal).should == [3, 4, 2, 6, 7, 5, 1]
+    end
+  end
+
   context "recursion" do
     it_behaves_like "preorder traversal", :recursion_preorder_traversal
     it_behaves_like "inorder traversal", :recursion_inorder_traversal
+    it_behaves_like "postorder traversal", :recursion_postorder_traversal
   end
   context "stack style" do
     it_behaves_like "preorder traversal", :stack_preorder_traversal
