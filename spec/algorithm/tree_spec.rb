@@ -139,6 +139,7 @@ describe Tree do
     it_behaves_like "preorder traversal", :stack_preorder_traversal
     it_behaves_like "inorder traversal", :stack_inorder_traversal
     it_behaves_like "postorder traversal", :stack_postorder_traversal
+    it_behaves_like "layer order traversal", :stack_layer_torder_traversal
   end
 
   context "print" do

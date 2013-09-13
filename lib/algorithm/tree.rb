@@ -110,6 +110,25 @@ class Tree
     result
   end
 
+  # === 栈版按层遍历
+  def stack_layer_torder_traversal
+    result, stack = [], []
+
+    result << @data
+    stack << self
+
+    while not stack.empty?
+      item = stack.pop
+
+      result << item.left.data if item.left
+      result << item.right.data if item.right
+
+      stack << item.right if item.right
+      stack << item.left if item.left
+    end
+    result
+  end
+
   # === 打印一棵树()
   def print
     # todo: 等层级遍历完成后，再来弄x
