@@ -117,6 +117,7 @@ describe Tree do
   context "stack style" do
     it_behaves_like "preorder traversal", :stack_preorder_traversal
     it_behaves_like "inorder traversal", :stack_inorder_traversal
+    it_behaves_like "postorder traversal", :stack_postorder_traversal
   end
 
   context "print" do

@@ -66,11 +66,36 @@ class Tree
     result
   end
 
+  # === 递归版后序遍历
   def recursion_postorder_traversal(result=[])
     @left.recursion_postorder_traversal(result) if @left
     @right.recursion_postorder_traversal(result) if @right
     result << @data
   end
+
+  # === 栈版后序遍历
+  def stack_postorder_traversal
+    stack, result = [], []
+
+    stack << @data
+    stack << @right if @right
+    stack << @left if @left
+
+    while not stack.empty?
+      item = stack.pop
+
+      unless item.respond_to? :right
+        result << item
+        next
+      end
+
+      stack << item.data
+      stack << item.right if item.right
+      stack << item.left if item.left
+    end
+    result
+  end
+
   # === 打印一棵树()
   def print
     # todo: 等层级遍历完成后，再来弄x
