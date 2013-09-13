@@ -48,6 +48,7 @@ describe Tree do
     t3_r_r = t2_r.right = Tree.new 7
     t
   end
+
   shared_examples_for "preorder traversal" do |traversal|
     it "1 node" do
       Tree.new(1).send(traversal).should == [1]
@@ -89,9 +90,24 @@ describe Tree do
   end
   context "recursion" do
     it_behaves_like "preorder traversal", :recursion_preorder_traversal
-    it_behaves_like "inorder traversal", :recursion_ineorder_traversal
+    it_behaves_like "inorder traversal", :recursion_inorder_traversal
   end
   context "stack style" do
     it_behaves_like "preorder traversal", :stack_preorder_traversal
+    it_behaves_like "inorder traversal", :stack_inorder_traversal
+  end
+
+  context "print" do
+    it "1 node" do
+      #Tree.new(1).print.should == '1'
+    end
+    it "2 nodes" do
+s =<<END
+  1
+2
+END
+
+      #t2_l.print.should == s
+    end
   end
 end
