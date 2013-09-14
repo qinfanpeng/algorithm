@@ -142,5 +142,39 @@ describe Tree do
     it_behaves_like "layer order traversal", :stack_layer_torder_traversal
   end
 
+  context "create by preorder list and inorder list" do
+    it "1 node" do
+      Tree.create_by_preorder_and_inorder_list([1], [1])
+        .should eql Tree.new(1)
+    end
+    it "2 nodes" do
+      Tree.create_by_preorder_and_inorder_list([1, 2], [2, 1])
+        .should eql t2_l
+      t2_l.print
 
+      Tree.create_by_preorder_and_inorder_list([1, 2], [1, 2])
+        .should eql t2_r
+      #tree.print
+    end
+    it "3 nodes" do
+      Tree.create_by_preorder_and_inorder_list([1, 2, 3], [2, 1, 3])
+        .should eql t3_l_r
+      t3_l_r.print
+
+      Tree.create_by_preorder_and_inorder_list([1, 2, 3], [3, 2, 1])
+        .should eql t3_l_l
+      t3_l_l.print
+    end
+    it "4 nodes" do
+      Tree.create_by_preorder_and_inorder_list([1, 2, 3, 4], [3, 2, 4,1])
+        .should eql t4_l_l_r
+      t4_l_l_r.print
+    end
+    it "and more nodes" do
+      Tree.create_by_preorder_and_inorder_list([1, 2, 3, 4, 5, 6, 7], [3, 2, 4, 1, 6, 5, 7])
+        .should eql t7
+      t7.print
+    end
+
+  end
 end
