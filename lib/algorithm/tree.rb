@@ -22,10 +22,12 @@ class Tree
     tree = self.new root
 
     if left_inorder_list.size > 0
-      tree.left = self.create_by_preorder_and_inorder_list(left_preorder_list, left_inorder_list)
+      tree.left = self
+        .create_by_preorder_and_inorder_list(left_preorder_list, left_inorder_list)
     end
     if right_inorder_list.size > 0
-      tree.right = self.create_by_preorder_and_inorder_list(right_preoder_list, right_inorder_list)
+      tree.right = self
+        .create_by_preorder_and_inorder_list(right_preoder_list, right_inorder_list)
     end
 
     tree
@@ -194,40 +196,61 @@ class Tree
 
 
   # 求根节点到最左叶子节点的距离
+  # 此方法目前为print方法服务
   def left_width(n=1)
     n += 1
+    if  @right and (not @left)
+      fake_left = @right.deep_clone.set_all_data_to_blank
+      self.left = fake_left
+    end
+
     return 1 unless @left
     @left.left_width(n) + (2**(layers.size+1-n)) + 1 if @left
   end
 
+  # 返回个层的节点
+  # 此方法目前为print方法服务
   def layers(n=1, result={})
     result.merge!({ n => [@data] }) if n == 1
 
     n += 1
+    to_complete_tree
 
     result[n] ||= [] if @left or @right
     result[n] << @left.data if @left
     result[n] << @right.data if @right
 
-    @left.layers(n, result) if @left and @left.left
-    @right.layers(n, result) if @right and @right.right
+    @left.layers(n, result) if @left
+    @right.layers(n, result) if @right
 
     result
   end
 
+  # 深拷贝
+  # 此方法目前为print方法服务
+  def deep_clone
+    Marshal.load(Marshal.dump(self))
+  end
 
+  # 把树的所有节点data设为 " "
+  # 此方法目前为print方法服务
+  def set_all_data_to_blank
+    self.data = " "
+    @left.set_all_data_to_blank if @left
+    @right.set_all_data_to_blank if @right
+    self
+  end
 
-
-
-
-
-
-
-
-
-
-
-
-
+  # 把一棵树转化为完全二叉树， 无节点的子树用 " " 表示
+  # 此方法目前为print方法服务
+  def to_complete_tree
+    if @left and (not @right)
+      fake_right = @left.deep_clone.set_all_data_to_blank
+      self.right = fake_right
+    elsif (not @left) and @right
+      fake_left = @right.deep_clone.set_all_data_to_blank
+      self.left = fake_left
+    end
+  end
 
 end

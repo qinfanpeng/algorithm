@@ -154,7 +154,7 @@ describe Tree do
 
       Tree.create_by_preorder_and_inorder_list([1, 2], [1, 2])
         .should eql t2_r
-      #tree.print
+      t2_r.print
     end
     it "3 nodes" do
       Tree.create_by_preorder_and_inorder_list([1, 2, 3], [2, 1, 3])
