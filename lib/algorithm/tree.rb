@@ -130,8 +130,53 @@ class Tree
   end
 
   # === 打印一棵树()
-  def print
-    # todo: 等层级遍历完成后，再来弄x
+  def print()
+    str = ""
+    height = layers.size  # 数的高度
+    begin_pos = left_width # 开始显示树节点的位置
+
+    layers.each do |n, layer|
+      item_space = 2**(height+1-n)  # 平均左右子节点的距离
+      begin_pos = begin_pos - (item_space/2) - 1 unless n == 1
+
+      str << " " * begin_pos  # 最左边节点的左缩进
+
+      layer.each_with_index do |item, index|
+        str << item.to_s
+        if index.odd?
+           str << " " * (item_space-1) # 前一棵子树的右节点和后一棵子树的左节点少一个空格
+        else
+          str << " " * (item_space+1)  # 相邻两个节点间加一个空格（可以正好使父节点位于它们的正上方）
+        end
+      end
+      str << "\n"
+
+    end
+    puts str
+    str
+  end
+
+
+  # 求根节点到最左叶子节点的距离
+  def left_width(n=1)
+    n += 1
+    return 1 unless @left
+    @left.left_width(n) + (2**(layers.size+1-n)) + 1 if @left
+  end
+
+  def layers(n=1, result={})
+    result.merge!({ n => [@data] }) if n == 1
+
+    n += 1
+
+    result[n] ||= [] if @left or @right
+    result[n] << @left.data if @left
+    result[n] << @right.data if @right
+
+    @left.layers(n, result) if @left and @left.left
+    @right.layers(n, result) if @right and @right.right
+
+    result
   end
 
 

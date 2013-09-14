@@ -142,17 +142,5 @@ describe Tree do
     it_behaves_like "layer order traversal", :stack_layer_torder_traversal
   end
 
-  context "print" do
-    it "1 node" do
-      #Tree.new(1).print.should == '1'
-    end
-    it "2 nodes" do
-s =<<END
-  1
-2
-END
 
-      #t2_l.print.should == s
-    end
-  end
 end
