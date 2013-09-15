@@ -7,6 +7,7 @@
 #   出队列辅助栈，弹出出队列辅助栈顶元素
 # - 3. 再次出队列时， 如果出队列辅助栈非空， 直接弹出出队列辅助栈顶元素接口，
 #   否则重复步骤2中的操作
+# 类似的看simulate_stack.rb
 class SimulateQueue
   attr_reader :length
 
