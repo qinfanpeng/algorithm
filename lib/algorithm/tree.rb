@@ -7,7 +7,26 @@ class Tree
   end
 
   # === 根据先序遍历和中序遍历结果创建二叉树
-  def self.create_by_preorder_and_inorder_list(preorder_list, inorder_list)
+  def self.recursion_create_by_preorder_and_inorder_list(preorder_list, inorder_list)
+
+    tree = self.new preorder_list[0]
+
+    left_preorder_list, left_inorder_list, right_preorder_list, right_inorder_list =
+      self.prepare_create_subtree_traversal_list(preorder_list, inorder_list)
+
+    if left_inorder_list.size > 0
+      tree.left = self
+        .recursion_create_by_preorder_and_inorder_list(left_preorder_list, left_inorder_list)
+    end
+    if right_inorder_list.size > 0
+      tree.right = self
+        .recursion_create_by_preorder_and_inorder_list(right_preorder_list, right_inorder_list)
+    end
+
+    tree
+  end
+
+  def self.prepare_create_subtree_traversal_list(preorder_list, inorder_list)
     root = preorder_list[0]
     root_at = inorder_list.index root
 
@@ -19,18 +38,11 @@ class Tree
     left_preorder_list = preorder_list.slice!(0, left_inorder_list.size)
     right_preoder_list = preorder_list
 
-    tree = self.new root
+    return left_preorder_list, left_inorder_list, right_preoder_list, right_inorder_list
+  end
 
-    if left_inorder_list.size > 0
-      tree.left = self
-        .create_by_preorder_and_inorder_list(left_preorder_list, left_inorder_list)
-    end
-    if right_inorder_list.size > 0
-      tree.right = self
-        .create_by_preorder_and_inorder_list(right_preoder_list, right_inorder_list)
-    end
-
-    tree
+  def self.stack_create_by_preorder_and_inorder_list(preorder_list, inorder_list)
+    # todo ...
   end
 
   def eql?(other)
@@ -191,7 +203,6 @@ class Tree
 
     end
     puts str
-    str
   end
 
 
