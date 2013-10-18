@@ -21,7 +21,5 @@ describe Link do
       link << Node.new(3)
       expect(link.kth_node_from_end(2).data).to eq 2
     end
-
-
   end
 end
